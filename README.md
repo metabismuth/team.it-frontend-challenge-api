@@ -1,4 +1,4 @@
-# LetsGetChecked front end challenge REST API
+# Team.it front end challenge REST API
 
 > Starter REST API for Team.it front end coding challenge
 
