@@ -47,6 +47,7 @@ Create an react application which runs in the browser and satisfies the followin
 You are more than welcome to use the following starting points.
 
 - [Create React App](https://create-react-app.dev/)
+- [Vite](https://vitejs.dev/)
 - [NextJs](https://nextjs.org/)
 
 ##### Requirements
