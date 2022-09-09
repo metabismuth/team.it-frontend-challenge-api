@@ -4,11 +4,8 @@
   * @param {Date} b Date B
   * @returns {Number} Number pluggable into Array.sort
   */
-export const comparePostsByDate = (a, b) => {
-  if (a.publish_date < b.publish_date) return 1;
-  if (a.publish_date > b.publish_date) return -1;
-  return 0;
-}
+export const comparePostsByDate = (a, b) =>
+  b.publish_date - a.publish_date;
 
 // NOTE this next one is unnecessary, just need to make comments and posts share
 // the "date" key
@@ -19,8 +16,6 @@ export const comparePostsByDate = (a, b) => {
   * @param {Date} b Date B
   * @returns {Number} Number pluggable into Array.sort
   */
- export const compareCommentsByDate = (a, b) => {
-  if (a.date < b.date) return 1;
-  if (a.date > b.date) return -1;
-  return 0;
-}
+export const compareCommentsByDate = (a, b) =>
+  b.date - a.date;
+
