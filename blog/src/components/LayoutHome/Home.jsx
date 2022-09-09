@@ -1,6 +1,5 @@
-import Navigation from "../Navigation/Navigation";
 import HomeFeed from "./HomeFeed";
-import "./Home.css";
+import "./Home.sass";
 
 const Home = () => {
   return (

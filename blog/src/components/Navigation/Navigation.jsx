@@ -1,4 +1,4 @@
-import "./Navigation.css";
+import "./Navigation.sass";
 
 const Navigation = () => {
   return (

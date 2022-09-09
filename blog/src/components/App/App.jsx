@@ -6,7 +6,6 @@ import {
 import Home from "../LayoutHome/Home";
 import Post from "../LayoutPost/Post";
 import Navigation from "../Navigation/Navigation";
-import "./App.css";
 
 function App() {
   return (

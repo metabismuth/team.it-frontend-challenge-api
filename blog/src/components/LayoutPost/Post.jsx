@@ -1,4 +1,4 @@
-import "./Post.css";
+import "./Post.sass";
 
 const Post = () => {
   return (
