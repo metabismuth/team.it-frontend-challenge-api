@@ -5,8 +5,9 @@ import "./Home.css";
 const Home = () => {
   return (
     <div className="Home">
-      <Navigation/>
-      This is the homepage!
+      <div id="info">
+        <p>Welcome to my keysmash blog.</p>
+      </div>
       <HomeFeed/>
     </div>
   );

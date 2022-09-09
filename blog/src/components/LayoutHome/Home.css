@@ -1,0 +1,28 @@
+.HomeFeedPost {
+  margin: 1em 0;
+  padding-bottom: 1em;
+}
+
+.HomeFeedPost h3, .HomeFeedPost .desc {
+  margin: 0
+}
+
+.HomeFeedPost .title {
+  text-decoration: none;
+}
+
+.HomeFeedPost .meta {
+  font-size: 11px;
+}
+
+.HomeFeedPost .desc {
+  margin-top: .5em;
+}
+
+.HomeFeedPost:not(:last-child) {
+  border-bottom: dotted 1px var(--text-color);
+}
+
+.HomeFeedPost a, .HomeFeedPost a:visited {
+  color: 
+}

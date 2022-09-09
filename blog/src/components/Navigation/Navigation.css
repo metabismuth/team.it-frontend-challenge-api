@@ -1,16 +1,19 @@
+.Navigation {
+  margin: 1em 0;
+}
 .Navigation ul {
   display: flex;
+  justify-content: space-between;
   padding: 0;
-  margin: 1em 0;
+  margin: 0;
   gap: 4ch;
 }
 .Navigation ul li {
   list-style-type: none;
 }
 .Navigation ul li a {
-  color: #9999e9;
+  color: var(--link-color);
   text-decoration: none;
-}
-.Navigation ul li a:visited {
-  color: #9999e9;
+  font-size: 18px;
+  font-weight: bolder;
 }
