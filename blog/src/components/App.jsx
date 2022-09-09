@@ -16,7 +16,8 @@ function App() {
       <Router>
         <Routes>
             <Route path="/" element={<Home/>}/>
-            <Route path="/posts/:post" element={<Post/>}/>
+            <Route path="/posts/:id" element={<Post/>}/>
+            {/* TODO <Route path="/posts/:slug" element={<Post/>}/> */}
         </Routes>
       </Router>
     </div>

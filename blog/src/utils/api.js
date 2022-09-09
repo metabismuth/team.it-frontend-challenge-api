@@ -22,7 +22,7 @@ export const getPost = async id =>
 * @param {Number} id Post ID
 * @returns {Array} Comments for the specific post
 */
-export const getCommentPosts = async id =>
+export const getCommentsFromPost = async id =>
   await fetch(`${API_ADDRESS}/posts/${id}/comments`)
     .then(data => data.json());
 

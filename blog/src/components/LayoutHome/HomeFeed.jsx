@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getPosts } from "../../utils/api";
-import { compareByDate } from "../../utils/etc";
+import { comparePostsByDate } from "../../utils/etc";
 import HomeFeedPost from "./HomeFeedPost";
 
 const HomeFeed = () => {
@@ -20,7 +20,7 @@ const HomeFeed = () => {
     <div className="HomeFeed">
       {
         posts
-          .sort(compareByDate)
+          .sort(comparePostsByDate)
           .map((post, i) => <HomeFeedPost key={i} post={post}/>)
       }
     </div>
