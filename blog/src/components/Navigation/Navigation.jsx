@@ -4,11 +4,10 @@ const Navigation = () => {
   return (
     <nav className="Navigation">
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/">Link A</a></li>
-        <li><a href="/">Link 2</a></li>
-        <li><a href="/">Clown photos</a></li>
-        <li><a href="/">About</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/postindex">Post Index</a></li>
+        <li><a href="/clowns">Clown Photos</a></li>
+        <li><a href="/frogs">Frog Festival 2023</a></li>
       </ul>
     </nav>
   );

@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="Home">
       <div id="info">
-        <p>Welcome to my keysmash blog.</p>
+        <p>Welcome to the Pumpkin Patch blog!</p>
       </div>
       <HomeFeed/>
     </div>
