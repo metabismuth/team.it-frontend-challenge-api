@@ -1,0 +1,16 @@
+.Navigation ul {
+  display: flex;
+  padding: 0;
+  margin: 1em 0;
+  gap: 4ch;
+}
+.Navigation ul li {
+  list-style-type: none;
+}
+.Navigation ul li a {
+  color: #9999e9;
+  text-decoration: none;
+}
+.Navigation ul li a:visited {
+  color: #9999e9;
+}
