@@ -5,7 +5,7 @@ const HomeFeedPost = ({post}) => {
       <div className="meta">
         <span>by {post.author}</span> &bull; <span>{post.publish_date}</span>
       </div>
-      <p class="desc">{post.description}</p>
+      <p className="desc">{post.description}</p>
       <a href={`/posts/${post.id}`}>Read more</a>
     </article>
   );
