@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getPost, getCommentsFromPost } from "../../utils/api"
+import { getPost, getCommentsFromPost } from "../../utils/api";
+import { compareCommentsByDate, buildCommentTree } from "../../utils/etc";
+import { PostComment } from "./PostComment";
 import "./Post.sass";
 
 const Post = () => {
@@ -13,7 +15,10 @@ const Post = () => {
     (async () => {
       try {
         setPostData(await getPost(id));
-        setComments(await getCommentsFromPost(id));
+        setComments(
+          buildCommentTree(
+            (await getCommentsFromPost(id))
+              .sort(compareCommentsByDate)));
       } catch (error) {
         // TODO api down handling
       }
@@ -31,10 +36,12 @@ const Post = () => {
         </div>
         <div id="post_content" dangerouslySetInnerHTML={{ __html:  post.content}}/>
       </div>
-      <div id="comments_container">
-        <h3>Comments</h3>
-        {comments.map((post, i) => <div>Comment placeholder.</div>)}
-      </div>
+      { comments.length > 0 &&
+        <div id="comments_container">
+          <h3>Comments</h3>
+          { comments.map((comment, i) => <PostComment key={i} comment={comment}/>) }
+        </div>
+      }
     </div>
   );
 }
