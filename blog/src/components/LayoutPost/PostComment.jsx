@@ -1,21 +1,25 @@
 export const PostComment = (props) => {
-  const replyToThisComment = () => props.setReplyHandler(props.comment.id);
+  const actionOnThisComment = type => () =>
+    props.setCommentAction({ type, id: props.comment.id });
 
   return (
     <div className="PostComment">
       {/* TODO make this prettier */}
       <div className="meta">
-        <span>#{props.comment.id}</span> &bull; <span>
-        {props.comment.date}</span><br/>
-        <span>{props.comment.user}</span> &bull; <button
+        <span>{props.comment.date}</span> &bull; <button
           className="reply button_plain"
-          onClick={replyToThisComment}>Reply</button>
+          onClick={actionOnThisComment("reply")}
+        >Reply</button> &bull; <button
+          className="edit button_plain"
+          onClick={actionOnThisComment("edit")}
+        >Edit</button><br/>
+        <span>#{props.comment.id}</span> &bull; <span>{props.comment.user}</span>
       </div>
       <div className="content">{props.comment.content}</div>
       <div className="replies">
         { props.comment.children.map((child, i) =>
           <PostComment key={i} comment={child}
-            setReplyHandler={props.setReplyHandler}/>) }
+            setCommentAction={props.setCommentAction}/>) }
       </div>
     </div>
   );

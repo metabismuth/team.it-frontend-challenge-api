@@ -27,6 +27,15 @@ export const getCommentsFromPost = async id =>
     .then(data => data.json());
 
 /**
+* Get specific comment
+* @param {Number} id Comment ID
+* @returns {{}} Comment
+*/
+export const getComment = async id =>
+  await fetch(`${API_ADDRESS}/comments/${id}`)
+    .then(data => data.json());
+
+/**
 * Post comment to a specific post
 * @param {Number} id Post ID
 * @param {{}} body JSON body
@@ -41,7 +50,7 @@ export const postComment = async (id, body) =>
 
 /**
 * Update a comment
-* @param {Number} id Post ID
+* @param {Number} id Comment ID
 * @param {{}} body JSON body
 */
 export const updateComment = async (id, body) =>

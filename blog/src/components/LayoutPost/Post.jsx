@@ -10,12 +10,12 @@ const Post = () => {
   const { id } = useParams();
   const [post, setPostData] = useState({});
   const [comments, setComments] = useState([]);
-  const [commentReply, setCommentReply] = useState(0);
+  const [commentAction, setCommentAction] = useState({ type: "none", id: 0 });
 
   useEffect(() => {
     (async () => {
       try {
-        if (commentReply === -1) setCommentReply(0);
+        if (commentAction.id === -1) setCommentAction({ ...commentAction, id: 0 });
         setPostData(await getPost(id));
         setComments(
           buildCommentTree(
@@ -25,7 +25,7 @@ const Post = () => {
         // TODO api down handling
       }
     })();
-  }, [id, commentReply]);
+  }, [id, commentAction]);
 
   return (
     <div className="Post">
@@ -43,11 +43,11 @@ const Post = () => {
           <h3>Comments</h3>
           { comments.map((comment, i) =>
             <PostComment key={i} comment={comment}
-              setReplyHandler={setCommentReply}/>) }
+              setCommentAction={setCommentAction}/>) }
         </div>
       }
-      <PostCommentForm replyingTo={commentReply} postId={id}
-        setReplyHandler={setCommentReply}/>
+      <PostCommentForm actioningOn={commentAction} postId={id}
+        setCommentAction={setCommentAction}/>
     </div>
   );
 }
