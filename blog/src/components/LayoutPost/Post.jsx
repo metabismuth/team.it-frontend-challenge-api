@@ -4,16 +4,18 @@ import { getPost, getCommentsFromPost } from "../../utils/api";
 import { compareCommentsByDate, buildCommentTree } from "../../utils/etc";
 import { PostComment } from "./PostComment";
 import "./Post.sass";
+import { PostCommentForm } from "./PostCommentForm";
 
 const Post = () => {
   const { id } = useParams();
-  const emptyComment = { content: undefined, user: undefined, id };
   const [post, setPostData] = useState({});
   const [comments, setComments] = useState([]);
+  const [commentReply, setCommentReply] = useState(0);
 
   useEffect(() => {
     (async () => {
       try {
+        if (commentReply === -1) setCommentReply(0);
         setPostData(await getPost(id));
         setComments(
           buildCommentTree(
@@ -23,7 +25,7 @@ const Post = () => {
         // TODO api down handling
       }
     })();
-  }, [id]);
+  }, [id, commentReply]);
 
   return (
     <div className="Post">
@@ -39,9 +41,13 @@ const Post = () => {
       { comments.length > 0 &&
         <div id="comments_container">
           <h3>Comments</h3>
-          { comments.map((comment, i) => <PostComment key={i} comment={comment}/>) }
+          { comments.map((comment, i) =>
+            <PostComment key={i} comment={comment}
+              setReplyHandler={setCommentReply}/>) }
         </div>
       }
+      <PostCommentForm replyingTo={commentReply} postId={id}
+        setReplyHandler={setCommentReply}/>
     </div>
   );
 }

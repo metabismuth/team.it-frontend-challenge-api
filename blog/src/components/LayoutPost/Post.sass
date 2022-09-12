@@ -22,4 +22,20 @@ h2
     font-size: 14px
   .replies
     padding-left: 1ch
-    border-left: solid 1ch
+    border-left: solid .5ch var(--text-color)
+    margin-left: .5ch
+
+.PostCommentForm
+  border: 1px dotted var(--text-color)
+  padding: 1em 2ch
+  #commentUsername, #commentContent
+    display: block
+    width: 100%
+    background: transparent
+    color: var(--text-color)
+    border: none
+    outline: none
+  #commentContent
+    resize: none
+  #commentUsername
+    border-bottom: 1px dotted var(--text-color)

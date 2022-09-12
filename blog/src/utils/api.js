@@ -34,6 +34,7 @@ export const getCommentsFromPost = async id =>
 export const postComment = async (id, body) =>
   await fetch(`${API_ADDRESS}/posts/${id}/comments`, {
     method: "POST",
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify(body)
   })
     .then(data => data.json());
