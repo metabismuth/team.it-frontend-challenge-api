@@ -1,22 +1,22 @@
 import { postComment, updateComment, getComment } from "./../../utils/api";
 import { DateTime } from "luxon";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 export const PostCommentForm = (props) => {
-  const defaultComment = {
+  const defaultComment = useMemo(() => ({
       user: "Anonymous",
       postId: Number(props.postId),
       content: "",
       parent_id: null,
       date: "2000-01-01"
-    };
+    }), [props.postId]);
   const [comment, setComment] = useState(defaultComment);
 
   useEffect(() => {
     (async () => {
       try {
-        if (props.actioningOn.type === "edit") {
-          const original = await getComment(props.actioningOn.id);
+        if (props.commentAction.type === "edit") {
+          const original = await getComment(props.commentAction.id);
           setComment({
             ...original,
             user: original.user,
@@ -25,33 +25,35 @@ export const PostCommentForm = (props) => {
             date: original.date
           })
         }
+        if (props.commentAction.type === "none" || props.commentAction.type === "reply") {
+          setComment(defaultComment);
+        }
       } catch (error) {
         // TODO api down handling
       }
     })();
-  }, [props.actioningOn]);
+  }, [props.commentAction, defaultComment]);
 
   const submitComment = async () => {
-    if (props.actioningOn.type === "none" || props.actioningOn.type === "reply") {
+    if (props.commentAction.type === "none" || props.commentAction.type === "reply") {
       await postComment(Number(props.postId), {
         ...comment,
-        parent_id: props.actioningOn.id === 0 ? null : props.actioningOn.id,
+        parent_id: props.commentAction.id === 0 ? null : props.commentAction.id,
         date: DateTime.now().toISODate()
       });
-    } else if (props.actioningOn.type === "edit") {
+    } else if (props.commentAction.type === "edit") {
       /* TODO lock user field while editing */
       /* TODO "edit date" field */
-      await updateComment(props.actioningOn.id, comment);
+      await updateComment(props.commentAction.id, comment);
     }
 
     // Set empty comment content
     setComment(defaultComment);
-    // Reset actioningOn to -1 instead of 0 to kludge a re-render
+    // Reset commentAction to -1 instead of 0 to kludge a re-render
     props.setCommentAction({ type: "none", id: -1 });
   };
 
   const clearForm = () => {
-    setComment(defaultComment);
     props.setCommentAction({ type: "none", id: 0 });
   }
 
@@ -59,12 +61,12 @@ export const PostCommentForm = (props) => {
     <div className="PostCommentForm">
       {/* TODO make this prettier */}
       {
-        props.actioningOn.type !== "none" &&
+        props.commentAction.type !== "none" &&
         <div>
-          { props.actioningOn.type === "reply" ? "Replying to " : "Editing " }
-          comment #{props.actioningOn.id
+          { props.commentAction.type === "reply" ? "Replying to " : "Editing " }
+          comment #{props.commentAction.id
           } &bull; <button className="button_plain"
-          onClick={props.setCommentAction}>Clear</button>
+          onClick={() => props.setCommentAction({ type: "none", id: 0 })}>Clear</button>
         </div>
       }
       <input id="commentUsername"

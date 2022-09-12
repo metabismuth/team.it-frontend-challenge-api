@@ -46,7 +46,8 @@ const Post = () => {
               setCommentAction={setCommentAction}/>) }
         </div>
       }
-      <PostCommentForm actioningOn={commentAction} postId={post.id}
+      <PostCommentForm postId={post.id}
+        commentAction={commentAction}
         setCommentAction={setCommentAction}/>
     </div>
   );
