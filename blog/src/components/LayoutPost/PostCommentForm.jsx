@@ -15,7 +15,6 @@ export const PostCommentForm = (props) => {
   useEffect(() => {
     (async () => {
       try {
-        console.log("Hi there! " + props.actioningOn.id);
         if (props.actioningOn.type === "edit") {
           const original = await getComment(props.actioningOn.id);
           setComment({
