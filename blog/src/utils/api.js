@@ -18,6 +18,15 @@ export const getPost = async id =>
     .then(data => data.json());
 
 /**
+* Get post by slug
+* @param {string} id Post slug
+* @returns {{}} Post data
+*/
+export const getPostBySlug = async slug =>
+  (await getPosts())
+    .find(p => p.slug === slug);
+
+/**
 * Get comments on post
 * @param {Number} id Post ID
 * @returns {Array} Comments for the specific post

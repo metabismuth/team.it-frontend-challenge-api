@@ -17,7 +17,7 @@ function App() {
       <Router>
         <Routes>
             <Route path="/" element={<Home/>}/>
-            <Route path="/posts/:id" element={<Post/>}/>
+            <Route path="/posts/:slug" element={<Post/>}/>
             <Route path="*" element={<NotFound/>} />
             {/* TODO <Route path="/posts/:slug" element={<Post/>}/> */}
         </Routes>

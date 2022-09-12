@@ -64,7 +64,7 @@ export const PostCommentForm = (props) => {
         <div>
           { props.actioningOn.type === "reply" ? "Replying to " : "Editing " }
           comment #{props.actioningOn.id
-          } &bull; <button class="button_plain"
+          } &bull; <button className="button_plain"
           onClick={props.setCommentAction}>Clear</button>
         </div>
       }

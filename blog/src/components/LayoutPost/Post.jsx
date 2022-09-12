@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getPost, getCommentsFromPost } from "../../utils/api";
+import { getPostBySlug, getCommentsFromPost } from "../../utils/api";
 import { compareCommentsByDate, buildCommentTree } from "../../utils/etc";
 import { PostComment } from "./PostComment";
 import "./Post.sass";
 import { PostCommentForm } from "./PostCommentForm";
 
 const Post = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [post, setPostData] = useState({});
   const [comments, setComments] = useState([]);
   const [commentAction, setCommentAction] = useState({ type: "none", id: 0 });
@@ -16,16 +16,16 @@ const Post = () => {
     (async () => {
       try {
         if (commentAction.id === -1) setCommentAction({ ...commentAction, id: 0 });
-        setPostData(await getPost(id));
+        setPostData(await getPostBySlug(slug));
         setComments(
           buildCommentTree(
-            (await getCommentsFromPost(id))
+            (await getCommentsFromPost(post.id))
               .sort(compareCommentsByDate)));
       } catch (error) {
         // TODO api down handling
       }
     })();
-  }, [id, commentAction]);
+  }, [slug, post.id, commentAction]);
 
   return (
     <div className="Post">
@@ -46,7 +46,7 @@ const Post = () => {
               setCommentAction={setCommentAction}/>) }
         </div>
       }
-      <PostCommentForm actioningOn={commentAction} postId={id}
+      <PostCommentForm actioningOn={commentAction} postId={post.id}
         setCommentAction={setCommentAction}/>
     </div>
   );
